@@ -3,8 +3,8 @@
 	Id					INT IDENTITY	NOT NULL,
 	HouseholdId			INT				NOT NULL,
 	Name				NVARCHAR(256)	NOT NULL,
-	Balance				MONEY 			NOT NULL,
-	ReconciledBalance	MONEY			NOT NULL
+	Balance				MONEY 			NULL,
+	ReconciledBalance	MONEY  			NULL
 )
 GO
 

@@ -3,7 +3,10 @@
 	Id				INT IDENTITY	NOT NULL,
 	HouseholdId		INT				NOT NULL,
 	CategoryId		INT				NOT NULL,
-	Amount			MONEY			NOT NULL
+	[Description]	NVARCHAR(256)	NOT NULL,
+	Amount			MONEY			NOT NULL,
+	Expense			BIT				NOT NULL,
+	Period			INT				NOT NULL
 )
 GO
 

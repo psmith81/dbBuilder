@@ -1,13 +1,13 @@
 ﻿CREATE TABLE [dbo].[Transactions]
 (
 	Id					INT IDENTITY		NOT NULL,
+	HouseholdId			INT					NOT NULL,
 	AccountId			INT					NOT NULL,
 	Amount				MONEY				NOT NULL,
-	AbsAmount			MONEY				NOT NULL,
-	ReconciledAmount	MONEY				NOT NULL,
-	AbsReconciledAmount MONEY				NOT NULL,
+	SignedAmount		MONEY				NULL,
+	Reconciled			BIT					NOT NULL,
 	[Date]				DATETIMEOFFSET(7)	NOT NUll,
-	[Description]		NVARCHAR(MAX)		NOT NULL,
+	[Description]		NVARCHAR(MAX)		NULL,
 	Updated				DATETIMEOFFSET(7)	NOT NULL,
 	UpdatedByUserId		INT					NOT NULL,
 	CategoryId			INT					NOT NULL
@@ -20,7 +20,13 @@ PRIMARY KEY CLUSTERED (Id)
 GO
 
 CREATE INDEX IDX_Transactions
-ON [dbo].[Transactions] (Id)
+ON [dbo].[Transactions] (Id, AccountId)
+GO
+
+
+ALTER TABLE [dbo].[Transactions]
+WITH CHECK ADD CONSTRAINT FK_Transactions_Households
+FOREIGN KEY (HouseholdId) REFERENCES [Security].[Households]
 GO
 
 ALTER TABLE [dbo].[Transactions]
